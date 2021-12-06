@@ -1,0 +1,50 @@
+#include"Header.h"
+void latin_alph_ru(){
+	//char symbol[64] = {};
+	vector<unsigned char> symbols_ver;
+	bool perm = true;
+		while (perm) {
+			cout << "Ведите прописную или строчную букву(ы): ";
+			string symbol;
+			cin >> symbol;
+			verification();
+			vector<unsigned char> symbols(symbol.c_str(), symbol.c_str() + symbol.size() + 1);
+			//Проверяем на наличие правильность введеных символов
+			//symbols.pop_back();
+			for (unsigned int i = 0; i < symbols.size() - 1; i++) {
+				if (!((int(symbols[i]) >= 65 && int(symbols[i]) <= 90) || (int(symbols[i]) >= 97 && int(symbols[i]) <= 122))) {
+					cout << symbols[i];
+					perm = false;
+					break;
+				}
+			}
+			if (perm == true) { 
+				for (unsigned int i = 0; i < symbols.size() - 1; i++) {
+					symbols_ver.push_back(symbols[i]);
+				}
+				break; }
+			if (perm == false) {
+				cout << "Была допущенна ошибка при вводе, попробуйте еще раз\n";
+				perm = true;
+				for (unsigned int i = symbols.size() - 1; i > 0; i--) {
+					symbols.pop_back();
+				}
+			}
+			
+		}
+		if (perm == true) {
+			for (unsigned int i = 0,number =1; i < symbols_ver.size();number++,i++){
+				cout << "Для " << number << "-ого символа:\n";
+				if (symbols_ver[i] >= 65 && symbols_ver[i] <= 90) {
+					cout << "\nБыл введен код соответствующий прописной букве: " << symbols_ver[i];
+					symbols_ver[i] += 32;
+					cout << "\nСтрочный вариант этой буквы: " << symbols_ver[i] << "\n\n\n";
+				}
+				else {
+					cout << "\nБыл введен строчный код соответствующий букве: " << symbols_ver[i];
+					symbols_ver[i] -= 32;
+					cout << "\nПрописной вариант этой буквы: " << symbols_ver[i] << "\n\n\n";
+				}
+			}
+		}
+}

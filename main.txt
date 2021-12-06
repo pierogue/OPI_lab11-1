@@ -1,0 +1,42 @@
+#include"Header.h"
+int main() {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	setlocale(LC_CTYPE, "rus");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN);
+	bool perm = true;
+	int choose = 0;
+	while (perm) {
+		cout << "Лабораторная работа №5\n\n";
+		cout << "Выберите один из вариантов:\n";
+		cout << "1 - Определение разницы значений кодов в Win-1251 буквы латинского в прописном и строчном написании\n";
+		cout << "2 - Определение разницы значений кодов в Win-1251 буквы русского алфавита в прописном и строчном написании\n";
+		cout << "3 - Вывод в консоль кода символа, соответствующего введенной цифре\n";
+		cout << "4 - Выход из программы \n";
+		cout << "Вариант ответа: ";
+		cin >> choose;
+		verification();
+		switch (choose)
+		{
+		case 0: break;
+		case 1:
+			 latin_alph_ru();
+			 //latin_alph_en();
+			break;
+		case 2:
+			rus_alph();
+			break;
+		case 3:
+			code_of_symbol();
+			break;
+		case 4:
+			perm = false;
+			cout << "Спасибо!\n";
+			break;
+		default:
+			cout << "Такого варианта не существует\n";
+			break;
+		}
+	}
+	system("pause");
+}
